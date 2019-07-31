@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 
 """ importing modules """
+import os # python module which handles system calls
 import unittest # python module for unit testing
 import ipaddress # setting up IP addresses more logically
 import requests # to help us unittest our responses below
@@ -23,7 +24,9 @@ class TestAPIMethods(unittest.TestCase):
 		correctly counting
 		"""
 		arguments = ['apiGET.py', '127.0.0.1', 'HELLO_WORLD!']
-		self.assertTrue(ipaddress.ip_address(apiGET.sanitizeInput(arguments)))
+		with self.assertRaises(SystemExit) as e:
+			ipaddress.ip_address(apiGET.sanitizeInput(arguments))
+		self.assertEqual(e.exception.code, 1)
 
 
 	def test_bad_CLI_input(self):
@@ -32,7 +35,9 @@ class TestAPIMethods(unittest.TestCase):
 		eliminating bad input
 		"""
 		arguments = ['apiGET.py', '2540abc']
-		self.assertTrue(ipaddress.ip_address(apiGET.sanitizeInput(arguments)))
+		with self.assertRaises(SystemExit) as e:
+			apiGET.sanitizeInput(arguments)
+		self.assertEqual(e.exception.code, 1)
  
 
 	def test_good_IPv4_CLI_input(self):
@@ -50,7 +55,7 @@ class TestAPIMethods(unittest.TestCase):
 		good for IPv6
 		"""
 		arguments = ['apiGET.py', '::1']
-		self.assertTrue(apiGET.sanitizeInput(arguments))
+		self.assertTrue(ipaddress.ip_address(apiGET.sanitizeInput(arguments)))
 
 
 	def test_default_api_call_to_bad_IP(self):
@@ -59,8 +64,9 @@ class TestAPIMethods(unittest.TestCase):
 		in this case 'v3' and 'latest'
 		this test will fail because the IP address 192.168.45.45 does not exist
 		"""
-		self.assertEqual(apiGET.getVersions('192.168.45.45').text, 
-			'{\n    "supportedVersions":["v3", "latest"]\n}\n')
+		with self.assertRaises(SystemExit) as e:
+			apiGET.getVersions('192.168.45.45')
+		self.assertEqual(e.exception.code, 1)
 
 
 	def test_default_api_call_to_no_API(self):
@@ -69,8 +75,8 @@ class TestAPIMethods(unittest.TestCase):
 		in this case 'v3' and 'latest'
 		this test will fail because the IP address does exist but does not have an exposed API
 		"""
-		self.assertEqual(apiGET.getVersions('192.168.10.10').text, 
-			'{\n    "supportedVersions":["v3", "latest"]\n}\n')
+		with self.assertRaises(requests.exceptions.ConnectionError):
+			apiGET.getVersions('192.168.10.10')
 
 
 	def test_default_api_call(self):
