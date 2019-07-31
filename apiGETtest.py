@@ -1,7 +1,6 @@
 #! /usr/bin/python3
 
 """ importing modules """
-import os # python module which handles system calls
 import unittest # python module for unit testing
 import ipaddress # setting up IP addresses more logically
 import requests # to help us unittest our responses below
