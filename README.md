@@ -6,20 +6,26 @@
  
 ## Use Case Description
 
-Describe the problem this code addresses, how your code solves the problem, challenges you had to overcome as part of the solution, and optional ideas you have in mind that could further extend your solution.
+This script assists an API developer to determine which API versions are accepted with a specific Firepower Defense Manager console.
 
 ## Installation
 
-Detailed instructions on how to install, configure, and get the project running. Call out any dependencies. This should be frequently tested and updated to make sure it works reliably, accounts for updated versions of dependencies, etc.
+No dependencies outside python3 and the management IP address of the FDM-managed Firepower Threat Defense sensor.
 
 ## Configuration
 
-If the code is configurable, describe it in detail, either here or in other documentation that you reference.
+No configuration possible. This script is a simple GET request for accepted API versions.
 
 ## Usage
 
-Show users how to use the code. Be specific.
-Use appropriate formatting when showing code snippets or command line output.
+apiGET.py is a python script that makes use of the requests module to ask
+the target server what APIVersions it accepts.
+There is only one input (first command line argument) which is an IP address.
+The accepted API versions are the output.
+
+To run the script use the following syntax:
+./apiGET.py <IP address of server>
+python3 apiGET.py <IP address of server>
 
 ### DevNet Sandbox
 
@@ -27,9 +33,7 @@ A great way to make your repo easy for others to use is to provide a link to a [
 
 ## How to test the software
 
-Provide details on steps to test, versions of components/dependencies against which code was tested, date the code was last tested, etc. 
-If the repo includes automated tests, detail how to run those tests.
-If the repo is instrumented with a continuous testing framework, that is even better.
+For testing, please review the "apiGETtest.py" script bundled in this repo.
 
 
 ## Known issues
@@ -37,10 +41,6 @@ If the repo is instrumented with a continuous testing framework, that is even be
 Document any significant shortcomings with the code. If using [GitHub Issues](https://help.github.com/en/articles/about-issues) to track issues, make that known and provide any templates or conventions to be followed when opening a new issue. 
 
 ## Getting help
-
-Instruct users how to get help with this code; this might include links to an issues list, wiki, mailing list, etc.
-
-**Example**
 
 If you have questions, concerns, bug reports, etc., please create an issue against this repository.
 
