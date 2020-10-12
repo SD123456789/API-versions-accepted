@@ -11,12 +11,10 @@ To run the script use the following syntax:
 python3 apiGET.py <IP address of server>
 """
 
-
 import requests
 import ipaddress
 import sys
 import os
-import io
 
 
 def sanitizeInput(inputs):
