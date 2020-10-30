@@ -1,0 +1,5 @@
+###### Requirements to run apiGET.py ######
+requests
+ipaddress
+sys
+os

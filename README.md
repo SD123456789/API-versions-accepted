@@ -11,7 +11,8 @@ It can be run from any platform that has python3 installed.
 
 ## Installation
 
-No dependencies outside python3 and the management IP address of the FDM-managed Firepower Threat Defense sensor.
+After installing python3 and pip3 on your operating system of choice, please run the following command in the directory containing the requirements.txt file so that necessary dependencies can be installed:
+`pip3 install -r requirements.txt`
 
 
 ## Configuration
@@ -24,15 +25,11 @@ No configuration possible. This script is a simple GET request for the accepted 
 apiGET.py is a python script that makes use of the requests module to ask the target server what APIVersions it accepts.
 There is only one input (first command line argument) which is an IP address.
 The accepted API versions are the output.
+This script can be executed on any platform that has python3 installed and the requests plugin installed.
 
-To run the script use the following syntax:
+To run the script use one of the following methods:
 `./apiGET.py <IP address of server>`
 `python3 apiGET.py <IP address of server>`
-
-
-### DevNet Sandbox
-
-A great way to make your repo easy for others to use is to provide a link to a [DevNet Sandbox](https://developer.cisco.com/site/sandbox/) that provides a network or other resources required to use this code. In addition to identifying an appropriate sandbox, be sure to provide instructions and any configuration necessary to run your code with the sandbox.
 
 
 ## How to test the software
@@ -40,18 +37,13 @@ A great way to make your repo easy for others to use is to provide a link to a [
 For testing, please review the "apiGETtest.py" script bundled in this repo.
 
 
-## Known issues
-
-Document any significant shortcomings with the code. If using [GitHub Issues](https://help.github.com/en/articles/about-issues) to track issues, make that known and provide any templates or conventions to be followed when opening a new issue. 
-
-
 ## Getting help
 
-If you have questions, concerns, bug reports, etc., please create an issue against this repository.
+If you have questions, concerns, bug reports, etc., please contact me.
 
 
 ## Author(s)
 
 This project was written and is maintained by the following individuals:
 
-* Sudhir H. Desai <suddesai@cisco.com>
+* Sudhir H. Desai — suddesai@cisco.com
