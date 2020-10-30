@@ -2,7 +2,7 @@
 
 ![example output in json notation](./output.png)
  
- 
+
 ## Use Case Description
 
 This script assists an API developer to determine which API versions are accepted with a specific Firepower Defense Manager console.
@@ -26,8 +26,8 @@ There is only one input (first command line argument) which is an IP address.
 The accepted API versions are the output.
 
 To run the script use the following syntax:
-./apiGET.py <IP address of server>
-python3 apiGET.py <IP address of server>
+`./apiGET.py <IP address of server>`
+`python3 apiGET.py <IP address of server>`
 
 
 ### DevNet Sandbox
