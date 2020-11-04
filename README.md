@@ -28,7 +28,7 @@ The accepted API versions are the output.
 This script can be executed on any platform that has python3 installed and the requests plugin installed.
 
 To run the script use one of the following methods:
-`./apiGET.py <IP address of server>`
+`./apiGET.py <IP address of server>`  
 `python3 apiGET.py <IP address of server>`
 
 
