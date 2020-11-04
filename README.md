@@ -1,6 +1,6 @@
 # API-versions-accepted
 
-![example output in json notation](./output.png)
+![example output in json notation](output.png)
  
 
 ## Use Case Description
