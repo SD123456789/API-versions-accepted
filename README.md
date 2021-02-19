@@ -53,6 +53,10 @@ The Firepower Device Manager at 192.168.10.196 accepts the following API version
 ## How to test the software
 
 For testing, please review the "apiGETtest.py" script bundled in this repo.
+To run the testing script, enter the following at the command-line and press return:
+```shell
+API-versions-accepted % python3 ./apiGETtest.py
+```
 
 
 ## Getting help
