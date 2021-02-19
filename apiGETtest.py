@@ -23,7 +23,7 @@ class TestAPIMethods(unittest.TestCase):
 		test that we are cleanly implementing command-line sanitization
 		correctly counting
 		"""
-		arguments = ['apiGET.py', '127.0.0.1', 'HELLO_WORLD!']
+		arguments = ["apiGET.py" "127.0.0.1", "HELLO_WORLD!"]
 		with self.assertRaises(SystemExit) as e:
 			ipaddress.ip_address(apiGET.sanitizeInput(arguments))
 		self.assertEqual(e.exception.code, 1)
@@ -34,7 +34,7 @@ class TestAPIMethods(unittest.TestCase):
 		test that we are cleanly implementing command-line sanitization
 		eliminating bad input
 		"""
-		arguments = ['apiGET.py', '2540abc']
+		arguments = ["apiGET.py", "2540abc"]
 		with self.assertRaises(SystemExit) as e:
 			apiGET.sanitizeInput(arguments)
 		self.assertEqual(e.exception.code, 1)
@@ -45,7 +45,7 @@ class TestAPIMethods(unittest.TestCase):
 		test that we are cleanly implementing command-line sanitization
 		good for IPv4
 		"""
-		arguments = ['apiGET.py', '127.0.0.1']
+		arguments = ["apiGET.py", "127.0.0.1"]
 		self.assertTrue(ipaddress.ip_address(apiGET.sanitizeInput(arguments)))
 
 
@@ -54,39 +54,40 @@ class TestAPIMethods(unittest.TestCase):
 		test that we are cleanly implementing command-line sanitization
 		good for IPv6
 		"""
-		arguments = ['apiGET.py', '::1']
+		arguments = ["apiGET.py", "::1"]
 		self.assertTrue(ipaddress.ip_address(apiGET.sanitizeInput(arguments)))
 
 
 	def test_default_api_call_to_bad_IP(self):
 		"""
 		test our API GET method which returns the supported API versions,
-		in this case 'v3' and 'latest'
+		in this case 'v5', 'v6', and 'latest'
 		this test will fail because the IP address 192.168.45.45 does not exist
 		"""
 		with self.assertRaises(SystemExit) as e:
-			apiGET.getVersions('192.168.45.45')
+			apiGET.getVersions("192.168.45.45")
 		self.assertEqual(e.exception.code, 1)
 
 
 	def test_default_api_call_to_no_API(self):
 		"""
 		test our API GET method which returns the supported API versions,
-		in this case 'v3' and 'latest'
+		in this case 'v5', 'v6', and 'latest'
 		this test will fail because the IP address does exist but does not have an exposed API
 		"""
-		with self.assertRaises(requests.exceptions.ConnectionError):
-			apiGET.getVersions('192.168.10.10')
+		with self.assertRaises(SystemExit) as e:
+			apiGET.getVersions('192.168.10.254')
+		self.assertEqual(e.exception.code, 1)
 
 
 	def test_default_api_call(self):
 		"""
 		test our API GET method which returns the supported API versions,
-		in this case 'v3' and 'latest'
+		in this case 'v5', 'v6', and 'latest'
 		this test will succeed because the IP address does exist and will respond
 		"""
-		self.assertEqual(apiGET.getVersions('192.168.10.195').text, 
-			'{\n    "supportedVersions":["v3", "latest"]\n}\n')
+		getVersions = apiGET.getVersions('192.168.10.196')[0]
+		self.assertEqual(getVersions.text, '{\n    "supportedVersions":["v5", "v6", "latest"]\n}\n')
 
 
 if __name__ == '__main__':
